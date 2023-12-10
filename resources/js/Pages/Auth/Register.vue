@@ -1,44 +1,73 @@
 <script setup>
 import { Head, Link, useForm } from "@inertiajs/vue3";
 import AuthenticationCard from "@/Components/AuthenticationCard.vue";
-import AuthenticationCardLogo from "@/Components/AuthenticationCardLogo.vue";
 import Checkbox from "@/Components/Checkbox.vue";
 import InputError from "@/Components/InputError.vue";
 import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
+import OAuth from "@/Components/OAuth.vue";
+import axios from "axios";
+import { ref } from "vue";
 
 const form = useForm({
-    name: "",
+    first_name: "",
+    middle_name: "",
+    last_name: "",
     email: "",
+    country: "",
     password: "",
     password_confirmation: "",
-    terms: false,
+	terms: false,
 });
 
+const countries = ref([]);
+
+const key = "UTdudzNza3k2c3pSekxYR3NEa2Q0d0VteVgwVXFhZlpEdFZvVmVnNA==";
+
+const headers = {
+    "X-CSCAPI-KEY": key,
+};
+
+const getCountry = async () => {
+    return await axios
+        .get("https://api.countrystatecity.in/v1/countries", {
+            headers,
+        })
+        .then((res) => {
+            countries.value = res.data;
+            console.log(res);
+        })
+        .catch((error) => console.log(error));
+};
+
+getCountry();
+
 const submit = () => {
+console.log(form);
     form.post(route("register"), {
         onFinish: () => form.reset("password", "password_confirmation"),
+        onError: (error) => console.log(error),
     });
 };
 </script>
 
 <template>
-    <Head title="Register" />
-
     <AuthenticationCard>
-        <template #logo>
-            <AuthenticationCardLogo />
-        </template>
+        <Head title="Register" />
+        <h1 class="font-bold text-center font-lg">Create Account</h1>
+        <small class="block text-center">
+            Fill your information below or register with your social accounts
+        </small>
 
-        <form @submit.prevent="submit">
+        <form class="mt-12" @submit.prevent="submit">
             <div>
-                <InputLabel for="first_name" value="First first_name" />
+                <InputLabel for="first_name" value="First Name" />
                 <TextInput
                     id="first_name"
                     v-model="form.first_name"
                     type="text"
-                    class="mt-1 block w-full"
+                    class="block w-full mt-1"
                     required
                     autofocus
                     autocomplete="first_name"
@@ -51,9 +80,8 @@ const submit = () => {
                 <TextInput
                     id="middle_name"
                     v-model="form.middle_name"
-                    type="middle_name"
-                    class="mt-1 block w-full"
-                    required
+                    type="text"
+                    class="block w-full mt-1"
                     autocomplete="middle_name"
                 />
                 <InputError class="mt-2" :message="form.errors.middle_name" />
@@ -64,8 +92,8 @@ const submit = () => {
                 <TextInput
                     id="last_name"
                     v-model="form.last_name"
-                    type="last_name"
-                    class="mt-1 block w-full"
+                    type="text"
+                    class="block w-full mt-1"
                     required
                     autocomplete="last_name"
                 />
@@ -78,11 +106,28 @@ const submit = () => {
                     id="email"
                     v-model="form.email"
                     type="email"
-                    class="mt-1 block w-full"
+                    class="block w-full mt-1"
                     required
                     autocomplete="username"
                 />
                 <InputError class="mt-2" :message="form.errors.email" />
+            </div>
+
+            <div class="mt-4">
+                <button @click.prevent="console.log(form)">Seeform</button>
+                <InputLabel for="password" value="Country" />
+                <select name="country" id="country" v-model="form.country" class="block w-full mt-1 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
+                    <option value="">Choose Your Country</option>
+                    <option
+					class="p-2"
+                        :key="country"
+                        v-for="country in countries"
+                        :value="country.name"
+                    >
+                        {{ country.name }}
+                    </option>
+                </select>
+                <InputError class="mt-2" :message="form.errors.country" />
             </div>
 
             <div class="mt-4">
@@ -91,7 +136,7 @@ const submit = () => {
                     id="password"
                     v-model="form.password"
                     type="password"
-                    class="mt-1 block w-full"
+                    class="block w-full mt-1"
                     required
                     autocomplete="new-password"
                 />
@@ -107,7 +152,7 @@ const submit = () => {
                     id="password_confirmation"
                     v-model="form.password_confirmation"
                     type="password"
-                    class="mt-1 block w-full"
+                    class="block w-full mt-1"
                     required
                     autocomplete="new-password"
                 />
@@ -130,19 +175,19 @@ const submit = () => {
                             required
                         />
 
-                        <div class="ms-2">
+                        <div class="mt-2">
                             I agree to the
                             <a
                                 target="_blank"
                                 :href="route('terms.show')"
-                                class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                                class="text-sm text-gray-600 underline dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
                                 >Terms of Service</a
                             >
                             and
                             <a
                                 target="_blank"
                                 :href="route('policy.show')"
-                                class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                                class="text-sm text-gray-600 underline dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
                                 >Privacy Policy</a
                             >
                         </div>
@@ -154,7 +199,7 @@ const submit = () => {
             <div class="flex items-center justify-end mt-4">
                 <Link
                     :href="route('login')"
-                    class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                    class="text-sm text-gray-600 underline dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
                 >
                     Already registered?
                 </Link>
@@ -168,5 +213,6 @@ const submit = () => {
                 </PrimaryButton>
             </div>
         </form>
+        <OAuth />
     </AuthenticationCard>
 </template>
