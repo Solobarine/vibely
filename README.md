@@ -1,66 +1,116 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# TABLE OF CONTENT
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+[Introduction](#✨-introduction)
+[Languages](#🏁-languages)
+[Tech Stack](#⚜️-tech-stack)
+[Tech Breakdown](#tech-breakdown)
+[Features](#❇️-features)
+[Installation](#💻-installation)
+[Usage](#🚀🚀-usage)
+[License](#license)
 
-## About Laravel
+## ✨ Introduction
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Welcome to Vibely – your vibrant social hub! 🌟 Connect with friends and loved ones effortlessly through posts and messages. Share your journey, celebrate wins, and stay close to those who matter most. Join us in crafting authentic connections and creating a more vibrant you. Welcome to Vibely, where every moment sparks a deeper connection. 🌈✨
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🏁 Languages
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+<span style="margin-right: 25px;">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-plain.svg" height="50px" />
+</span>
+<span style="margin-right: 25px;">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg" height="50px" />
+</span>
 
-## Learning Laravel
+## ⚜️ Tech Stack
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+<span style="margin-right: 25px;">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain.svg" height="50px" />
+</span>
+<span style="margin-right: 25px;">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" height="50px" />
+</span>
+<span style="margin-right: 25px;">
+    <img src="./public/jetstream.png" height="50px" />
+</span>
+<span style="margin-right: 25px;">
+    <img src="./public/inertia.png" height="50px" />
+</span>
+<span style="margin-right: 25px;">
+    <img src="./public/s3.png" height="50px" />
+</span>
+<span style="margin-right: 25px;">
+    <img src="./public/pusher.png" height="50px" />
+</span>
+<span style="margin-right: 25px;">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-plain-wordmark.svg" height="50px" />
+</span>
+<span style="margin-right: 25px;margin-top: 25px;">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" height="50px" />
+</span>
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Tech Breakdown
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+-   **PHP:** Vibely leveraged PHP as its server-side scripting language, powering the backend logic and server functionalities to handle dynamic content and database interactions.
 
-## Laravel Sponsors
+-   **JavaScript and Vue.js:** The frontend of Vibely was enriched with dynamic and responsive features through JavaScript, with Vue.js playing a key role in creating interactive user interfaces and handling client-side data.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+-   **Laravel:** As the PHP web application framework, Laravel facilitated the rapid development of Vibely by providing a robust, expressive syntax and a variety of tools for tasks like routing, authentication, and database management.
 
-### Premium Partners
+-   **Inertia:** Inertia.js was used to seamlessly link Laravel on the backend with Vue.js on the frontend, enabling a single-page application experience without sacrificing the benefits of a traditional server-driven architecture.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+-   **Jetstream:** Laravel Jetstream provided a pre-built application scaffolding, accelerating the development process by offering authentication, teams, and API support, along with the benefits of Laravel's ecosystem.
 
-## Contributing
+-   **Tailwind CSS:** Vibely adopted Tailwind CSS for a utility-first approach to styling, streamlining the design process and ensuring a consistent and visually appealing user interface across the platform.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+-   **AWS S3:** Amazon S3, a scalable object storage service, was integrated into Vibely to efficiently manage and store static assets, ensuring reliable and secure content delivery.
 
-## Code of Conduct
+-   **Pusher:** Pusher was employed to enhance real-time communication features on Vibely, enabling instant updates and notifications for users, contributing to a more engaging and interactive user experience.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## ❇️ Features
 
-## Security Vulnerabilities
+-   **User Authentication:** Secure and easy-to-use authentication system for user accounts.
+-   **Email Verification:** Ensures the validity of user email addresses for enhanced security.
+-   **User Authorization:** Granular control over user permissions and access levels.
+-   **Post Management:** Create and view posts, including the ability to like and comment on posts.
+-   **Comment System:** Engage in discussions by commenting on both posts and other comments.
+-   **Friend Requests:** Send and receive friend requests to connect with others.
+-   **In-App Notifications:** Stay informed with real-time notifications about friend requests, likes, and comments.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 💻 Installation
 
-## License
+To install Vibely, follow these steps:
+
+1. Clone the repository:
+   `git clone https://github.com/your-username/vibely.git`
+2. Install dependencies:
+   `composer install && npm install`
+3. Configure environment variables: Set up your .env file with necessary credentials and configurations.
+
+4. Run migrations:
+   `php artisan migrate`
+5. Build assets:
+   `npm run dev`
+6. Serve the application:
+   `php artisan serve`
+
+## 🚀🚀 Usage
+
+-   Register for a new account on Vibely.
+-   Explore and connect with other users.
+-   Share posts, like and comment on content.
+-   Manage friend requests through the dedicated interface.
+-   Stay updated with real-time in-app notifications.
+
+## 🧑🏾 Author
+
+### Solomon Akpuru
+
+-   [LinkedIn Handle](https://www.linkedin.com/in/solomon-akpuru)
+-   [GitHub Profile](https://github.com/solobarine)
+-   [WellFound Profile](https://wellfound.com/u/solomon-akpuru)
+-   [Contra Profile](https://contra.com/solomon_akpuru)
+
+## LICENSE
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
