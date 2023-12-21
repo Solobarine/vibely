@@ -22,8 +22,9 @@ class CreateNewUser implements CreatesNewUsers
         Validator::make($input, [
             'first_name' => ['required', 'string', 'min:2', 'max:255'],
             'middle_name' => ['string', 'min:2', 'max:255'],
-			'last_name' => ['required', 'string', 'min:2', 'max:255'],
-			'country' => ['required', 'string', 'max:255', 'min:3'], 
+            'last_name' => ['required', 'string', 'min:2', 'max:255'],
+            'username' => ['required', 'string', 'min:2', 'max:100', 'unique:users'],
+            'country' => ['required', 'string', 'max:255', 'min:3'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
@@ -31,8 +32,9 @@ class CreateNewUser implements CreatesNewUsers
 
         return User::create([
             'first_name' => $input['first_name'],
-			'middle_name' => $input['middle_name'] ? $input['middle_name'] : '',
+            'middle_name' => $input['middle_name'] ? $input['middle_name'] : '',
             'last_name' => $input['last_name'],
+            'username' => $input['username'],
             'country' => $input['country'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
