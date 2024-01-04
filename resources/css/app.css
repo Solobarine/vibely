@@ -5,3 +5,48 @@
 [x-cloak] {
     display: none;
 }
+
+#app {
+    @apply min-h-screen;
+}
+
+.ql-toolbar {
+    @apply bg-white;
+}
+
+.ql-editor {
+    @apply rounded-lg min-h-[20em] bg-white;
+}
+
+#comment .ql-toolbar,
+#comment .ql-tooltip,
+.chat_editor.ql-toolbar,
+.chat_editor .ql-tooltip,
+.ql-clipboard {
+    display: none;
+}
+
+.chat_editor .ql-editor {
+    @apply min-h-fit border-text focus:border-primary outline-0 p-2 rounded-lg min-w-[12em];
+}
+
+.is_read_text {
+    @apply absolute bg-gray-700 text-white w-40 bottom-[-2em] left-0 py-1 hidden;
+}
+
+.mark_read:hover .is_read_text {
+    @apply block;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    @apply text-primary;
+}
+
+#comment .ql-container {
+    @apply grow;
+}
+
+#comment .ql-editor {
+    @apply min-h-[0] p-2 rounded-lg border-text border grow;
+}

@@ -1,22 +1,28 @@
 <script setup>
-import { ref } from 'vue';
-import { Link, router, useForm } from '@inertiajs/vue3';
-import ActionMessage from '@/Components/ActionMessage.vue';
-import FormSection from '@/Components/FormSection.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import SecondaryButton from '@/Components/SecondaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
+import { ref } from "vue";
+import { Link, router, useForm } from "@inertiajs/vue3";
+import ActionMessage from "@/Components/ActionMessage.vue";
+import FormSection from "@/Components/FormSection.vue";
+import InputError from "@/Components/InputError.vue";
+import InputLabel from "@/Components/InputLabel.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import SecondaryButton from "@/Components/SecondaryButton.vue";
+import TextInput from "@/Components/TextInput.vue";
 
 const props = defineProps({
     user: Object,
 });
 
 const form = useForm({
-    _method: 'PUT',
-    name: props.user.name,
+    _method: "PUT",
+    first_name: props.user.first_name,
+    middle_name: props.user.middle_name,
+    last_name: props.user.last_name,
     email: props.user.email,
+    country: props.user.country,
+    state: props.user.state,
+    city: props.user.city,
+    date_of_birth: props.user.date_of_birth,
     photo: null,
 });
 
@@ -29,8 +35,8 @@ const updateProfileInformation = () => {
         form.photo = photoInput.value.files[0];
     }
 
-    form.post(route('user-profile-information.update'), {
-        errorBag: 'updateProfileInformation',
+    form.post(route("user-profile-information.update"), {
+        errorBag: "updateProfileInformation",
         preserveScroll: true,
         onSuccess: () => clearPhotoFileInput(),
     });
@@ -47,7 +53,7 @@ const selectNewPhoto = () => {
 const updatePhotoPreview = () => {
     const photo = photoInput.value.files[0];
 
-    if (! photo) return;
+    if (!photo) return;
 
     const reader = new FileReader();
 
@@ -59,7 +65,7 @@ const updatePhotoPreview = () => {
 };
 
 const deletePhoto = () => {
-    router.delete(route('current-user-photo.destroy'), {
+    router.delete(route("current-user-photo.destroy"), {
         preserveScroll: true,
         onSuccess: () => {
             photoPreview.value = null;
@@ -77,9 +83,7 @@ const clearPhotoFileInput = () => {
 
 <template>
     <FormSection @submitted="updateProfileInformation">
-        <template #title>
-            Profile Information
-        </template>
+        <template #title> Profile Information </template>
 
         <template #description>
             Update your account's profile information and email address.
@@ -87,7 +91,10 @@ const clearPhotoFileInput = () => {
 
         <template #form>
             <!-- Profile Photo -->
-            <div v-if="$page.props.jetstream.managesProfilePhotos" class="col-span-6 sm:col-span-4">
+            <div
+                v-if="$page.props.jetstream.managesProfilePhotos"
+                class="col-span-6 sm:col-span-4"
+            >
                 <!-- Profile Photo File Input -->
                 <input
                     id="photo"
@@ -95,24 +102,34 @@ const clearPhotoFileInput = () => {
                     type="file"
                     class="hidden"
                     @change="updatePhotoPreview"
-                >
+                />
 
                 <InputLabel for="photo" value="Photo" />
 
                 <!-- Current Profile Photo -->
-                <div v-show="! photoPreview" class="mt-2">
-                    <img :src="user.profile_photo_url" :alt="user.name" class="rounded-full h-20 w-20 object-cover">
+                <div v-show="!photoPreview" class="mt-2">
+                    <img
+                        :src="user.profile_photo_url"
+                        :alt="user.name"
+                        class="rounded-full h-20 w-20 object-cover"
+                    />
                 </div>
 
                 <!-- New Profile Photo Preview -->
                 <div v-show="photoPreview" class="mt-2">
                     <span
                         class="block rounded-full w-20 h-20 bg-cover bg-no-repeat bg-center"
-                        :style="'background-image: url(\'' + photoPreview + '\');'"
+                        :style="
+                            'background-image: url(\'' + photoPreview + '\');'
+                        "
                     />
                 </div>
 
-                <SecondaryButton class="mt-2 me-2" type="button" @click.prevent="selectNewPhoto">
+                <SecondaryButton
+                    class="mt-2 me-2"
+                    type="button"
+                    @click.prevent="selectNewPhoto"
+                >
                     Select A New Photo
                 </SecondaryButton>
 
@@ -128,22 +145,50 @@ const clearPhotoFileInput = () => {
                 <InputError :message="form.errors.photo" class="mt-2" />
             </div>
 
-            <!-- Name -->
-            <div class="col-span-6 sm:col-span-4">
-                <InputLabel for="name" value="Name" />
+            <!-- First Name -->
+            <div class="col-span-6">
+                <InputLabel for="first_name" value="First Name" />
                 <TextInput
                     id="name"
-                    v-model="form.name"
+                    v-model="form.first_name"
                     type="text"
                     class="mt-1 block w-full"
                     required
-                    autocomplete="name"
+                    autocomplete="first_name"
+                />
+                <InputError :message="form.errors.first_name" class="mt-2" />
+            </div>
+
+            <!-- Middle Name -->
+            <div class="col-span-6">
+                <InputLabel for="middle_name" value="Middle Name" />
+                <TextInput
+                    id="middle_name"
+                    v-model="form.middle_name"
+                    type="text"
+                    class="mt-1 block w-full"
+                    required
+                    autocomplete="middle_name"
                 />
                 <InputError :message="form.errors.name" class="mt-2" />
             </div>
 
+            <!-- Last Name -->
+            <div class="col-span-6">
+                <InputLabel for="last_name" value="Last Name" />
+                <TextInput
+                    id="last_name"
+                    v-model="form.last_name"
+                    type="text"
+                    class="mt-1 block w-full"
+                    required
+                    autocomplete="last_name"
+                />
+                <InputError :message="form.errors.last_name" class="mt-2" />
+            </div>
+
             <!-- Email -->
-            <div class="col-span-6 sm:col-span-4">
+            <div class="col-span-6">
                 <InputLabel for="email" value="Email" />
                 <TextInput
                     id="email"
@@ -155,7 +200,12 @@ const clearPhotoFileInput = () => {
                 />
                 <InputError :message="form.errors.email" class="mt-2" />
 
-                <div v-if="$page.props.jetstream.hasEmailVerification && user.email_verified_at === null">
+                <div
+                    v-if="
+                        $page.props.jetstream.hasEmailVerification &&
+                        user.email_verified_at === null
+                    "
+                >
                     <p class="text-sm mt-2 dark:text-white">
                         Your email address is unverified.
 
@@ -170,9 +220,69 @@ const clearPhotoFileInput = () => {
                         </Link>
                     </p>
 
-                    <div v-show="verificationLinkSent" class="mt-2 font-medium text-sm text-green-600 dark:text-green-400">
-                        A new verification link has been sent to your email address.
+                    <div
+                        v-show="verificationLinkSent"
+                        class="mt-2 font-medium text-sm text-green-600 dark:text-green-400"
+                    >
+                        A new verification link has been sent to your email
+                        address.
                     </div>
+                </div>
+                <!-- Country -->
+                <div class="col-span-6">
+                    <InputLabel for="country" value="Country" />
+                    <TextInput
+                        id="country"
+                        v-model="form.country"
+                        type="text"
+                        class="mt-1 block w-full"
+                        required
+                        autocomplete="country"
+                    />
+                    <InputError :message="form.errors.country" class="mt-2" />
+                </div>
+
+                <!-- State -->
+                <div class="col-span-6">
+                    <InputLabel for="state" value="State" />
+                    <TextInput
+                        id="state"
+                        v-model="form.state"
+                        type="text"
+                        class="mt-1 block w-full"
+                        autocomplete="state"
+                    />
+                    <InputError :message="form.errors.state" class="mt-2" />
+                </div>
+
+                <!-- City -->
+                <div class="col-span-6">
+                    <InputLabel for="city" value="City" />
+                    <TextInput
+                        id="city"
+                        v-model="form.city"
+                        type="text"
+                        class="mt-1 block w-full"
+                        autocomplete="city"
+                    />
+                    <InputError :message="form.errors.city" class="mt-2" />
+                </div>
+
+                <!-- Date of Birth -->
+                <div class="col-span-6">
+                    <InputLabel for="date_of_birth" value="Date of Birth" />
+                    <TextInput
+                        id="date_of_birth"
+                        v-model="form.date_of_birth"
+                        type="date"
+                        class="mt-1 block w-full"
+                        required
+                        autocomplete="date_of_birth"
+                    />
+                    <InputError
+                        :message="form.errors.date_of_birth"
+                        class="mt-2"
+                    />
                 </div>
             </div>
         </template>
@@ -182,7 +292,10 @@ const clearPhotoFileInput = () => {
                 Saved.
             </ActionMessage>
 
-            <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+            <PrimaryButton
+                :class="{ 'opacity-25': form.processing }"
+                :disabled="form.processing"
+            >
                 Save
             </PrimaryButton>
         </template>
