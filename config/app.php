@@ -18,6 +18,8 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
 
+    'country_api_key' => env('COUNTRY_STATE_CITY_API_KEY'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
