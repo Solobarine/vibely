@@ -1,5 +1,7 @@
 <script setup>
-import { Head, Link, useForm } from "@inertiajs/vue3";
+import { ref } from "vue";
+import axios from "axios";
+import { Head, Link, useForm, usePage } from "@inertiajs/vue3";
 import AuthenticationCard from "@/Components/AuthenticationCard.vue";
 import Checkbox from "@/Components/Checkbox.vue";
 import InputError from "@/Components/InputError.vue";
@@ -7,8 +9,8 @@ import InputLabel from "@/Components/InputLabel.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
 import OAuth from "@/Components/OAuth.vue";
-import axios from "axios";
-import { ref } from "vue";
+
+const page = usePage();
 
 const form = useForm({
     first_name: "",
@@ -28,7 +30,9 @@ const usernameResponse = ref({
     data: "",
 });
 
-const key = "UTdudzNza3k2c3pSekxYR3NEa2Q0d0VteVgwVXFhZlpEdFZvVmVnNA==";
+//const key = "UTdudzNza3k2c3pSekxYR3NEa2Q0d0VteVgwVXFhZlpEdFZvVmVnNA==";
+
+const key = page.props.country_api_key;
 
 const headers = {
     "X-CSCAPI-KEY": key,
