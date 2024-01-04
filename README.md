@@ -8,6 +8,7 @@
 [Installation](#💻-installation)
 [Usage](#🚀🚀-usage)
 [License](#license)
+[Future Updates](#future-updates-and-additions)
 
 ## ✨ Introduction
 
@@ -65,8 +66,6 @@ Welcome to Vibely – your vibrant social hub! 🌟 Connect with friends and lov
 
 -   **AWS S3:** Amazon S3, a scalable object storage service, was integrated into Vibely to efficiently manage and store static assets, ensuring reliable and secure content delivery.
 
--   **Pusher:** Pusher was employed to enhance real-time communication features on Vibely, enabling instant updates and notifications for users, contributing to a more engaging and interactive user experience.
-
 ## ❇️ Features
 
 -   **User Authentication:** Secure and easy-to-use authentication system for user accounts.
@@ -102,6 +101,10 @@ To install Vibely, follow these steps:
 -   Manage friend requests through the dedicated interface.
 -   Stay updated with real-time in-app notifications.
 
+## Future Updates and Additions
+
+-   Adding Real-time messaging using web sockets, Pusher and Laravel Echo
+
 ## 🧑🏾 Author
 
 ### Solomon Akpuru
@@ -113,4 +116,4 @@ To install Vibely, follow these steps:
 
 ## LICENSE
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Vibely is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
