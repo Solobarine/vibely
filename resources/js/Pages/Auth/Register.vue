@@ -14,14 +14,19 @@ const form = useForm({
     first_name: "",
     middle_name: "",
     last_name: "",
+    username: "",
     email: "",
     country: "",
     password: "",
     password_confirmation: "",
-	terms: false,
+    terms: false,
 });
 
 const countries = ref([]);
+const usernameResponse = ref({
+    status: false,
+    data: "",
+});
 
 const key = "UTdudzNza3k2c3pSekxYR3NEa2Q0d0VteVgwVXFhZlpEdFZvVmVnNA==";
 
@@ -44,11 +49,28 @@ const getCountry = async () => {
 getCountry();
 
 const submit = () => {
-console.log(form);
+    console.log(form);
+    //if (usernameResponse.status === true) {
+    console.log("here");
     form.post(route("register"), {
         onFinish: () => form.reset("password", "password_confirmation"),
         onError: (error) => console.log(error),
     });
+    //}
+};
+
+const checkUsername = async () => {
+    if (form.data().username.length > 1) {
+        usernameResponse.value = { status: false, data: "" };
+        return axios
+            .post(route("username"), {
+                username: form.data().username,
+            })
+            .then((res) => {
+                console.log(res);
+                usernameResponse.value = res.data;
+            });
+    }
 };
 </script>
 
@@ -101,6 +123,27 @@ console.log(form);
             </div>
 
             <div class="mt-4">
+                <InputLabel for="username" value="Username" />
+                <TextInput
+                    id="username"
+                    v-model="form.username"
+                    type="text"
+                    @blur="checkUsername"
+                    class="block w-full mt-1"
+                    required
+                    autocomplete="username"
+                />
+                <small
+                    v-if="usernameResponse.status"
+                    class="text-green-500 font-bold mt-2"
+                    >{{ usernameResponse.data }}</small
+                >
+                <small v-else class="text-rose-500 font-bold mt-2'">{{
+                    usernameResponse.data
+                }}</small>
+            </div>
+
+            <div class="mt-4">
                 <InputLabel for="email" value="Email" />
                 <TextInput
                     id="email"
@@ -114,12 +157,16 @@ console.log(form);
             </div>
 
             <div class="mt-4">
-                <button @click.prevent="console.log(form)">Seeform</button>
                 <InputLabel for="password" value="Country" />
-                <select name="country" id="country" v-model="form.country" class="block w-full mt-1 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
+                <select
+                    name="country"
+                    id="country"
+                    v-model="form.country"
+                    class="block w-full mt-1 border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"
+                >
                     <option value="">Choose Your Country</option>
                     <option
-					class="p-2"
+                        class="p-2"
                         :key="country"
                         v-for="country in countries"
                         :value="country.name"
