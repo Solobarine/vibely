@@ -142,7 +142,11 @@ const toggle = () => {
                     {{ props.user.first_name }} {{ props.user.last_name }}
                 </h2>
                 <p class="text-center font-bold text-lg py-2">
-                    {{ props.friends_count }} Friends
+                    {{
+                        `${props.friends_count} ${
+                            props.friends_count === 1 ? "Friend" : "Friends"
+                        }`
+                    }}
                 </p>
                 <div class="grid grid-cols-4 py-4 divide-x divide-primary">
                     <div class="grid place-items-center gap-1">
