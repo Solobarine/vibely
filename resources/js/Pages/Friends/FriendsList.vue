@@ -40,7 +40,7 @@ const toggle = (value) => {
                     <i class="fa-solid fa-ellipsis-vertical text-xl"></i>
                 </div>
                 <div
-                    class="flex items-center justify-center flex-wrap gap-x-3 gap-y-1"
+                    class="flex items-center justify-center pt-10 flex-wrap gap-x-3 gap-y-1"
                 >
                     <button
                         @click="() => toggle(true)"
