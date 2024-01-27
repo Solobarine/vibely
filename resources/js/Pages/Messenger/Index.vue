@@ -11,13 +11,19 @@ import ApplicationMark from "@/Components/ApplicationMark.vue";
 // Declare Refs
 const files = ref(null);
 const friendInfo = ref({
-    fname: "",
+    name: "",
 });
+
+const emit = defineEmits(["showSplash"]);
+const data = emit("showSplash");
+console.log(data);
+
 const chatDetails = ref({
     sender_id: 1,
     receiver_id: 2,
     content: "",
 });
+
 const chatOpen = ref(true);
 const emojiPanel = ref(false);
 const showSplash = ref(true);
@@ -27,7 +33,13 @@ const toggle = (value) => {
     chatOpen.value = value;
 };
 
-const toggleEmoji = () => {
+const toggleEmoji = (value) => {
+    if (value !== "emojiButton") {
+        chatDetails.value.content = `${
+            chatDetails.value.content + value.unicode
+        }`;
+    }
+    console.log(chatDetails);
     emojiPanel.value = !emojiPanel.value;
 };
 
@@ -35,10 +47,9 @@ const toggleOpen = () => {
     isOpen.value = !isOpen.value;
 };
 
-const toggleSplash = (value) => {
-    console.log($event);
-    showSplash.value = value.status;
-    friendInfo.value = { fname: value.fname };
+const toggleSplash = () => {
+    showSplash.value = false;
+    //friendInfo.value = { name: value.name };
 };
 
 const loadImage = () => {
@@ -99,8 +110,8 @@ const loadImage = () => {
                 </div>
             </div>
             <div class="px-2">
-                <Chats v-if="chatOpen" />
-                <Friends v-else @show-splash="toggleSplash(false)" />
+                <Chats v-if="chatOpen" @show-splash="toggleSplash()" />
+                <Friends v-else @show-splash="toggleSplash()" />
             </div>
         </div>
         <div v-if="!showSplash" class="grow flex flex-col">
@@ -144,7 +155,7 @@ const loadImage = () => {
                     class="relative w-full bg-orange-400 px-4 py-2 bottom-0 left-0 flex flex-wrap items-center gap-4"
                 >
                     <VuemojiPicker
-                        @emojiClick="toggleEmoji"
+                        @emojiClick="(value) => toggleEmoji(value)"
                         class="absolute top-[-25em] left-0 transition-all duration-500 ease-in"
                         :class="{
                             'scale-100 z-10 pointer-events-auto opacity-100':
@@ -154,7 +165,7 @@ const loadImage = () => {
                         }"
                     />
                     <i
-                        @click="toggleEmoji"
+                        @click="() => toggleEmoji('emojiButton')"
                         class="fa-regular cursor-pointer fa-face-smile text-2xl"
                     ></i>
                     <i
@@ -172,9 +183,13 @@ const loadImage = () => {
                         type="text"
                         name="content"
                         id="content"
+                        v-model="chatDetails.content"
                         class="grow rounded-lg focus:border-orange-300 border-0 focus:border-2 ring-0 outline-0"
                     />
-                    <button class="grid place-items-center">
+                    <button
+                        @click="() => console.log(chatDetails)"
+                        class="grid place-items-center"
+                    >
                         <ion-icon name="send" class="text-2xl"></ion-icon>
                     </button>
                 </div>
