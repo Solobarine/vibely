@@ -1,12 +1,11 @@
 <script setup>
 const { details } = defineProps(["details"]);
-console.log(details);
 </script>
 
 <template>
     <div
         @click="
-            $parent.$emit('showSplash', { status: false, fname: details.fname })
+            $parent.$emit('showSplash', { status: true, name: details.fname })
         "
         class="flex p-2 py-3 items-center gap-3 bg-white"
     >
