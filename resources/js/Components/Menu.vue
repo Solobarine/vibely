@@ -5,6 +5,7 @@ const isOpen = ref(false);
 const toggle = () => {
     isOpen.value = !isOpen.value;
 };
+const { href } = window.location;
 </script>
 
 <template>
@@ -16,6 +17,7 @@ const toggle = () => {
         <Link
             :href="route('posts')"
             class="hover:text-primary transition duration-200 mt-6"
+            :class="route('posts') === href ? 'text-primary' : ''"
         >
             <i class="fa-solid fa-pen"></i>
             Posts
@@ -23,6 +25,7 @@ const toggle = () => {
         <Link
             :href="route('messenger')"
             class="hover:text-primary transition duration-200"
+            :class="route('messenger') === href ? 'text-primary' : ''"
         >
             <i class="fa-solid fa-message"></i>
             Messenger
@@ -30,6 +33,7 @@ const toggle = () => {
         <Link
             :href="route('friends')"
             class="hover:text-primary transition duration-200"
+            :class="route('friends') === href ? 'text-primary' : ''"
         >
             <i class="fa-solid fa-user-group"></i>
             Friends
@@ -37,6 +41,7 @@ const toggle = () => {
         <Link
             :href="route('post.new')"
             class="hover:text-primary transition duration-200"
+            :class="route('post.new') === href ? 'text-primary' : ''"
         >
             <i class="fa-solid fa-pen-to-square"></i>
             New Post
@@ -44,6 +49,7 @@ const toggle = () => {
         <Link
             :href="route('notifications')"
             class="hover:text-primary transition duration-200"
+            :class="route('notifications') === href ? 'text-primary' : ''"
         >
             <i class="fa-solid fa-bell"></i>
             Notifications
@@ -51,6 +57,7 @@ const toggle = () => {
         <Link
             :href="route('userprofile')"
             class="hover:text-primary transition duration-200"
+            :class="route('userprofile') === href ? 'text-primary' : ''"
         >
             <i class="fa-solid fa-user"></i>
             Profile
@@ -58,6 +65,7 @@ const toggle = () => {
         <Link
             :href="route('profile.show')"
             class="hover:text-primary transition duration-200"
+            :class="route('profile.show') === href ? 'text-primary' : ''"
         >
             <i class="fa-solid fa-screwdriver-wrench"></i>
             Settings
