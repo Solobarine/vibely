@@ -8,14 +8,12 @@ import Footer from "@/Components/Footer.vue";
 const props = defineProps(["notifications"]);
 
 const notifications = props.notifications;
-
-console.log(notifications);
 </script>
 
 <template>
     <NavigationBar class="sticky top-0" />
     <section
-        class="text-text flex flex-col sm:flex-row sm:items-start min-h-screen"
+        class="text-text flex flex-col sm:flex-row sm:items-start min-h-screen bg-gray-200"
     >
         <Menu v-slot="{ toggle, isOpen }">
             <i
@@ -29,7 +27,7 @@ console.log(notifications);
             ></i>
         </Menu>
         <div class="grow flex flex-col">
-            <div class="bg-primary py-12">
+            <div class="bg-primary py-24">
                 <div
                     class="px-4 py-2 flex items-center justify-between text-white"
                 >
@@ -45,7 +43,7 @@ console.log(notifications);
             </div>
             <div
                 v-if="notifications.length > 0"
-                class="bg-gray-200 grow p-2 flex flex-col gap-1 w-full max-w-[40em] mx-auto"
+                class="grow p-2 flex flex-col gap-1 w-full max-w-[40em] mx-auto"
             >
                 <Notification
                     v-for="notification in notifications"
