@@ -19,7 +19,9 @@ defineProps({
 
         <NavigationBar class="sticky top-0 z-40" />
 
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+        <div
+            class="min-h-screen bg-gray-100 dark:bg-gray-600 text-gray-800 dark:text-white"
+        >
             <!-- Page Content -->
             <main class="flex items-start shrink-0 gap-4">
                 <Menu class="text-text lg:sticky lg:top-[4em]">

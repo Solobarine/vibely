@@ -32,7 +32,7 @@ const submit = () => {
 <template>
     <Head title="Log in" />
 
-    <AuthenticationCard>
+    <AuthenticationCard class="max-w-md">
         <div
             v-if="status"
             class="mb-4 text-sm font-medium text-green-600 dark:text-green-400"

@@ -22,7 +22,7 @@ console.log(notification);
 
 <template>
     <div
-        class="p-2 pb-1 rounded-md bg-white"
+        class="p-2 pb-1 rounded-md bg-white dark:bg-gray-500"
         :class="{ 'border border-primary': !notification.read_at }"
     >
         <div class="flex flex-wrap items-center justify-between gap-2">
@@ -36,6 +36,7 @@ console.log(notification);
             </div>
             <div>
                 <Link
+                    :key="link.id"
                     v-for="link in notification.data.links"
                     :href="link.link"
                     class="text-white bg-primary rounded-lg p-2"

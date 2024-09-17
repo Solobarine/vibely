@@ -54,7 +54,7 @@ const toggle = () => {
 <template>
     <NavigationBar class="sticky top-0 z-40" />
     <section
-        class="text-text flex flex-col bg-gray-200 sm:flex-row sm:items-start min-h-screen"
+        class="text-text flex flex-col bg-gray-200 dark:bg-gray-600 dark:text-white sm:flex-row min-h-screen"
     >
         <Menu v-slot="{ toggle, isOpen }">
             <i

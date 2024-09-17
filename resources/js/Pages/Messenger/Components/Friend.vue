@@ -7,7 +7,7 @@ const { details } = defineProps(["details"]);
         @click="
             $parent.$emit('showSplash', { status: true, name: details.fname })
         "
-        class="flex p-2 py-3 items-center gap-3 bg-white"
+        class="flex p-2 py-3 items-center gap-3 bg-white dark:bg-gray-400"
     >
         <img
             src="user-male.png"

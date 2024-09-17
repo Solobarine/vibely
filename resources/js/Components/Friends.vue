@@ -9,9 +9,9 @@ const toggle = () => {
 
 <template>
     <div
-        class="xxs:fixed p-4 grid gap-4 bg-white shadow-md z-10 transition-all duration-500 ease-in shadow-text w-full max-w-[20em] lg:sticky lg:top-[4em]"
+        class="fixed p-4 grid gap-4 bg-white dark:bg-gray-700 shadow-md z-10 transition-all duration-500 ease-in shadow-text w-full max-w-[20em] lg:top-[4em]"
         :class="{
-            'right-[-100%] right-1': isOpen,
+            'right-[-100%]': isOpen,
             'top-[4em] right-1': !isOpen,
         }"
     >
@@ -26,7 +26,7 @@ const toggle = () => {
                 }"
             ></i>
         </div>
-        <div v-for="i in 6" class="flex items-center gap-2">
+        <div v-for="i in 6" :key="i" class="flex items-center gap-2">
             <img
                 src="user-male.png"
                 alt=""

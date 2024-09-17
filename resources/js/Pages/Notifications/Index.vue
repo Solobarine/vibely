@@ -11,9 +11,9 @@ const notifications = props.notifications;
 </script>
 
 <template>
-    <NavigationBar class="sticky top-0" />
+    <NavigationBar class="sticky top-0 z-30" />
     <section
-        class="text-text flex flex-col sm:flex-row sm:items-start min-h-screen bg-gray-200"
+        class="text-text flex flex-col sm:flex-row sm:items-start min-h-screen bg-gray-200 dark:bg-gray-600 dark:text-white"
     >
         <Menu v-slot="{ toggle, isOpen }">
             <i

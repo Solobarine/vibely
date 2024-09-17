@@ -14,11 +14,11 @@ defineProps({
     <Head title="Welcome" />
 
     <div
-        class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-orange-300 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white"
+        class="relative min-h-screen dark:text-white bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white"
     >
         <div
             v-if="canLogin"
-            class="sm:fixed sm:top-0 w-full flex items-center justify-between bg-white sm:end-0 p-4 text-end z-10"
+            class="sticky top-0 w-full flex items-center justify-between bg-white dark:bg-gray-800 sm:end-0 p-4 text-end z-10"
         >
             <div class="flex items-center shrink-0 sm:ml-4">
                 <Link :href="route('posts')">
@@ -29,69 +29,56 @@ defineProps({
                 v-if="$page.props.auth.user"
                 :href="route('posts')"
                 class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                >Posts Feed</Link
+                >Feed</Link
             >
 
             <template v-else>
-                <Link
-                    :href="route('login')"
-                    class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                    >Log in</Link
-                >
-
-                <Link
-                    v-if="canRegister"
-                    :href="route('register')"
-                    class="ms-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                    >Register</Link
-                >
-            </template>
-        </div>
-        <div class="flex flex-wrap xs:flex-nowrap mt-20 p-2 sm:px-8 gap-y-10">
-            <div class="grid place-content-center gap-2">
-                <h1 class="text-3xl font-bold">
-                    <span class="text-6xl">Vibely</span> is now on the web
-                </h1>
-                <p class="text-lg font-bold">
-                    Create Posts, chat and message your friends no matter where
-                    you are.
-                </p>
-                <div
-                    class="flex items-center justify-center gap-2 text-gray-200"
-                >
+                <div class="flex items-center gap-3">
                     <Link
                         :href="route('login')"
-                        class="bg-gray-800 rounded-lg px-3 py-2"
+                        class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                        >Log in</Link
                     >
-                        <i class="fa-solid fa-right-to-bracket"></i>
-                        Log in to start
-                    </Link>
+
+                    <Link
+                        v-if="canRegister"
+                        :href="route('register')"
+                        class="ms-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
+                        >Register</Link
+                    >
+                </div>
+            </template>
+        </div>
+        <div
+            class="flex flex-wrap relative sm:px-10 p-2 justify-between max-w-full"
+        >
+            <div class="grow max-w-xl sticky left-0 z-20 sm:pt-20 pt-3">
+                <h1 class="text-5xl">Discover Your Perfect Social Space</h1>
+                <p class="text-sm mt-2">
+                    Join a vibrant community where your interests come alive.
+                    Connect, share, and explore with like-minded individuals in
+                    a space designed just for you. Dive into engaging
+                    conversations, find inspiration, and make lasting
+                    connections. Your new favorite social hub awaits!
+                </p>
+                <div class="flex flex-wrap gap-3 py-10">
                     <Link
                         :href="route('register')"
-                        class="bg-gray-800 rounded-lg px-3 py-2"
+                        class="px-4 py-2 rounded-lg shadow-md bg-orange-500 text-white"
+                        >Get Started</Link
                     >
-                        <i class="fa-solid fa-pen-to-square"></i>
-                        Register an account
-                    </Link>
+                    <Link
+                        :href="route('login')"
+                        class="px-4 py-2 rounded-lg shadow-md bg-zinc-500 text-white"
+                        >Login</Link
+                    >
                 </div>
             </div>
-            <div class="flex flex-wrap items-center gap-y-3 justify-around">
-                <img
-                    src="/landing0.jpg"
-                    alt=""
-                    class="max-w-[15em] sm:w-full xxs:w-[10em]"
-                />
-                <img
-                    src="/landing1.jpg"
-                    alt=""
-                    class="max-w-[15em] sm:w-full xxs:w-[10em]"
-                />
-                <img
-                    src="/landing2.jpg"
-                    alt=""
-                    class="max-w-[15em] sm:w-full xxs:w-[10em]"
-                />
-            </div>
+            <img
+                src="emoji_bg.png"
+                alt="A Rainbow of emojis"
+                className="grow max-h-screen object-contain"
+            />
         </div>
     </div>
 </template>

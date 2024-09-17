@@ -19,7 +19,6 @@ const sanitize = (word) => {
                 break;
             }
         }
-        console.log(openTag);
     }
 
     for (let j = word.length - 1; j >= 0; j--) {
@@ -52,7 +51,7 @@ const text = sanitize("<section>hello this is this..</se");
 <template>
     <AppLayout title="Posts Feed">
         <div
-            class="py-12 mx-auto bg-white shadow-md shadow-text w-full min-h-screen"
+            class="py-12 mx-auto bg-gray-200 dark:bg-gray-600 dark:text-white shadow-md shadow-text w-full min-h-screen"
         >
             <swiper-container
                 slidesPerView="auto"
@@ -63,6 +62,7 @@ const text = sanitize("<section>hello this is this..</se");
                 class="mx-2"
             >
                 <swiper-slide
+                    :key="i"
                     v-for="i in 4"
                     class="relative h-40 border rounded-lg w-36 shrink-0 grow-0 bg-primary mx-auto"
                 >
@@ -85,7 +85,7 @@ const text = sanitize("<section>hello this is this..</se");
 
             <p
                 v-else
-                class="text-red-700 h-full text-2xl font-bold mt-6 rounded-lg py-6 bg-gray-200 mx-4 text-center"
+                class="text-gray-800 dark:text-gray-200 h-full text-2xl font-bold mt-6 rounded-lg py-40 text-center"
             >
                 No Posts Avaliable Right Now
             </p>

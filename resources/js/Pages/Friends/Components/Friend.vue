@@ -11,7 +11,7 @@ console.log(props);
 
 <template>
     <div
-        class="relative max-w-[30em] sm:max-w-[20em] rounded-lg shadow-md bg-white w-full"
+        class="relative max-w-[30em] sm:max-w-[20em] rounded-lg shadow-md bg-white dark:bg-gray-500 dark:text-white w-full"
     >
         <div class="bg-stone-400 py-14 rounded-t-lg"></div>
         <img

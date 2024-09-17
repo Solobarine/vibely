@@ -45,7 +45,6 @@ const getCountry = async () => {
         })
         .then((res) => {
             countries.value = res.data;
-            console.log(res);
         })
         .catch((error) => console.log(error));
 };
@@ -79,14 +78,19 @@ const checkUsername = async () => {
 </script>
 
 <template>
-    <AuthenticationCard>
+    <AuthenticationCard class="max-w-2xl">
         <Head title="Register" />
-        <h1 class="font-bold text-center font-lg">Create Account</h1>
-        <small class="block text-center">
+        <h1 class="font-bold text-center font-lg dark:text-white">
+            Create Account
+        </h1>
+        <small class="block text-center dark:text-white">
             Fill your information below or register with your social accounts
         </small>
 
-        <form class="mt-12" @submit.prevent="submit">
+        <form
+            class="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-3"
+            @submit.prevent="submit"
+        >
             <div>
                 <InputLabel for="first_name" value="First Name" />
                 <TextInput
@@ -101,7 +105,7 @@ const checkUsername = async () => {
                 <InputError class="mt-2" :message="form.errors.first_name" />
             </div>
 
-            <div class="mt-4">
+            <div>
                 <InputLabel for="middle_name" value="Middle Name" />
                 <TextInput
                     id="middle_name"
@@ -113,7 +117,7 @@ const checkUsername = async () => {
                 <InputError class="mt-2" :message="form.errors.middle_name" />
             </div>
 
-            <div class="mt-4">
+            <div>
                 <InputLabel for="last_name" value="Last Name" />
                 <TextInput
                     id="last_name"
@@ -126,7 +130,7 @@ const checkUsername = async () => {
                 <InputError class="mt-2" :message="form.errors.last_name" />
             </div>
 
-            <div class="mt-4">
+            <div>
                 <InputLabel for="username" value="Username" />
                 <TextInput
                     id="username"
@@ -147,7 +151,7 @@ const checkUsername = async () => {
                 }}</small>
             </div>
 
-            <div class="mt-4">
+            <div>
                 <InputLabel for="email" value="Email" />
                 <TextInput
                     id="email"
@@ -160,7 +164,7 @@ const checkUsername = async () => {
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
 
-            <div class="mt-4">
+            <div>
                 <InputLabel for="password" value="Country" />
                 <select
                     name="country"
@@ -181,7 +185,7 @@ const checkUsername = async () => {
                 <InputError class="mt-2" :message="form.errors.country" />
             </div>
 
-            <div class="mt-4">
+            <div>
                 <InputLabel for="password" value="Password" />
                 <TextInput
                     id="password"
@@ -194,7 +198,7 @@ const checkUsername = async () => {
                 <InputError class="mt-2" :message="form.errors.password" />
             </div>
 
-            <div class="mt-4">
+            <div>
                 <InputLabel
                     for="password_confirmation"
                     value="Confirm Password"
@@ -213,10 +217,7 @@ const checkUsername = async () => {
                 />
             </div>
 
-            <div
-                v-if="$page.props.jetstream.hasTermsAndPrivacyPolicyFeature"
-                class="mt-4"
-            >
+            <div v-if="$page.props.jetstream.hasTermsAndPrivacyPolicyFeature">
                 <InputLabel for="terms">
                     <div class="flex items-center">
                         <Checkbox
@@ -247,7 +248,9 @@ const checkUsername = async () => {
                 </InputLabel>
             </div>
 
-            <div class="flex items-center justify-end mt-4">
+            <div
+                class="flex items-center justify-end mt-4 col-span-1 sm:col-span-2"
+            >
                 <Link
                     :href="route('login')"
                     class="text-sm text-gray-600 underline dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"

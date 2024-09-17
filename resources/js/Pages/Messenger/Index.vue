@@ -60,10 +60,10 @@ const loadImage = () => {
 
 <template>
     <section
-        class="relative flex bg-slate-200 dark:bg-slate-700 text-text min-h-screen py-2"
+        class="relative flex bg-slate-200 dark:bg-slate-700 text-text dark:tet-white min-h-screen py-2"
     >
         <div
-            class="xxs:absolute xxs:bg-slate-200 xxs:max-w-full z-20 w-full sm:relative sm:max-w-[20em] sm:left-0 xxs:h-screen shrink-0 transition-all duration-700 ease-in"
+            class="xxs:absolute xxs:max-w-full z-20 w-full sm:relative sm:max-w-[20em] sm:left-0 xxs:h-screen shrink-0 transition-all duration-700 ease-in"
             :class="{ 'left-0': isOpen, 'left-[-150%]': !isOpen }"
         >
             <div class="flex items-center grow p-3">
@@ -137,7 +137,7 @@ const loadImage = () => {
                 </div>
             </div>
             <div
-                class="relative grow flex flex-col gap-2 bg-gray-100 dark:bg-grey-900"
+                class="relative grow flex flex-col gap-2 bg-gray-100 dark:bg-gray-900"
             >
                 <div class="grow grid gap-3 auto-rows-min p-2 overflow-y-auto">
                     <UserChatBubble>
@@ -197,7 +197,7 @@ const loadImage = () => {
         </div>
         <div
             v-else
-            class="relative grow grid items-center place-content-center gap-2 bg-gray-100 dark:bg-grey-900"
+            class="relative grow grid items-center place-content-center gap-2 bg-gray-100 dark:bg-gray-800 dark:text-white"
         >
             <ApplicationMark class="max-w-[7em] mx-auto w-full" />
             <h1 class="font-bold text-center text-xl">

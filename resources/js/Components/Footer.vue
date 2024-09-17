@@ -1,25 +1,34 @@
 <script setup lang="ts">
+import { Link } from "@inertiajs/vue3";
+import ApplicationMark from "./ApplicationMark.vue";
 const date = new Date();
 const email = "solobarine@gmail.com";
 </script>
 
 <template>
-    <footer class="lg:static bottom-0 z-50 bg-primary p-3 rounded-top-3">
+    <footer
+        class="p-3 rounded-top-3 px-4 sm:px-20 text-gray-600 dark:text-white bg-white dark:bg-gray-900"
+    >
         <div
-            class="flex flex-wrap-reverse items-center justify-between text-gray-200 gap-4"
+            class="flex flex-wrap-reverse items-center justify-between gap-4 py-6"
         >
-            <div>
-                <div class="flex gap-2">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <p>5 Random Street, City Unknown</p>
+            <div class="grid gap-4">
+                <div class="w-16">
+                    <ApplicationMark />
                 </div>
-                <div class="flex items-center gap-2">
-                    <i class="fa-solid fa-envelope"></i>
-                    <p>solobarine@gmail.com</p>
-                </div>
-                <div class="flex items-center gap-2">
-                    <i class="fa-solid fa-phone-flip"></i>
-                    <p>+01 222 2222</p>
+                <div class="grid gap-2">
+                    <div class="flex gap-2">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <p>5 Random Street, City Unknown</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-envelope"></i>
+                        <p>solobarine@gmail.com</p>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i class="fa-solid fa-phone-flip"></i>
+                        <p>+01 222 2222</p>
+                    </div>
                 </div>
             </div>
             <div class="max-w-[20em] w-full">
@@ -29,44 +38,47 @@ const email = "solobarine@gmail.com";
                     cupiditate nulla cum, fugit mollitia recusandae maiores.
                     Provident?
                 </p>
-                <div
-                    class="flex items-center flex-wrap gap-3 mt-4 text-gray-200"
-                >
+                <div class="flex items-center flex-wrap gap-3 mt-4">
                     <a
                         href="https://www.linkedin.com/in/solomon-akpuru"
                         target="_blank"
                         ><i
-                            class="fa-brands fa-linkedin transition-all duration-300 ease-in text-2xl hover:text-gray-500"
+                            class="fa-brands fa-linkedin transition-all duration-300 ease-in text-xl hover:text-gray-500"
                         ></i
                     ></a>
                     <a href="https://github.com/Solobarine" target="_blank"
                         ><i
-                            class="fa-brands fa-github transition-all duration-300 ease-in text-2xl hover:text-gray-500"
+                            class="fa-brands fa-github transition-all duration-300 ease-in text-xl hover:text-gray-500"
                         ></i
                     ></a>
                     <a href="https://twitter.com/SolomonAkpuru" target="_blank"
                         ><i
-                            class="fa-brands fa-x-twitter text-2xl hover:text-gray-500 transition-all duration-300 ease-in"
+                            class="fa-brands fa-x-twitter text-xl hover:text-gray-500 transition-all duration-300 ease-in"
                         ></i
                     ></a>
                     <a
                         href="https://wellfound.com/u/solomon-akpuru"
                         target="_blank"
                         ><i
-                            class="fa-brands fa-angellist text-2xl hover:text-gray-500 transition-all duration-300 ease-in"
+                            class="fa-brands fa-angellist text-xl hover:text-gray-500 transition-all duration-300 ease-in"
                         ></i
                     ></a>
                     <a href="`mail:to:${email}`" target="_blank"
                         ><i
-                            class="fa-brands fa-google text-2xl hover:text-gray-500 transition-all duration-300 ease-in"
+                            class="fa-brands fa-google text-xl hover:text-gray-500 transition-all duration-300 ease-in"
                         ></i
                     ></a>
                 </div>
             </div>
         </div>
-        <p class="text-gray-200 text-center mt-2">
-            Copyright &copy; {{ date.getFullYear() }}. Vibely by Solomon Barine
-            Akpuru.
-        </p>
+        <hr />
+        <div class="flex items-center gap-3 justify-between flex-wrap py-6">
+            <p>&copy; {{ date.getFullYear() }} Vibely</p>
+            <div class="flex items-center gap-3">
+                <Link href="#">Terms of Service</Link>
+                <Link href="#">Privacy Policy</Link>
+                <Link href="#">Cookies</Link>
+            </div>
+        </div>
     </footer>
 </template>
