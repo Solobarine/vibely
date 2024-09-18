@@ -35,8 +35,6 @@ class PostsController extends Controller
 
     public function show($id)
     {
-
-
         $post = Post::with('comments.user', 'comments.replies.likes', 'user')->find($id);
 
         # Load all replies associated with a comment
@@ -91,7 +89,7 @@ class PostsController extends Controller
 
         $files = $request->file('files');
 
-        if (count($files) > 0) {
+        if ($files) {
             for ($i = 0; $i < count($files); $i++) {
                 if ($i < 3) {
                     $path = Storage::putFile('post_files', $files[$i]);
