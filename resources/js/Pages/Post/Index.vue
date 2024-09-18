@@ -1,7 +1,8 @@
 <script setup>
 import AppLayout from "@/Layouts/AppLayout.vue";
 import Post from "@/Pages/Post/Partials/Post.vue";
-import { defineProps } from "vue";
+import { defineProps, reactive, ref } from "vue";
+import CreatePopup from "./Partials/CreatePopup.vue";
 
 const props = defineProps(["posts"]);
 const posts = props.posts;
@@ -50,45 +51,36 @@ const text = sanitize("<section>hello this is this..</se");
 
 <template>
     <AppLayout title="Posts Feed">
-        <div
-            class="py-12 mx-auto bg-gray-200 dark:bg-gray-600 dark:text-white shadow-md shadow-text w-full min-h-screen"
-        >
-            <swiper-container
-                slidesPerView="auto"
-                speed="600"
-                spaceBetween="10"
-                loop="true"
-                css-mode="true"
-                class="mx-2"
+        <div class="mx-auto bg-gray-100 dark:bg-gray-700 w-full min-h-screen">
+            <div
+                class="max-w-3xl mx-auto bg-white dark:bg-gray-800 p-2 rounded-b-lg shadow-lg transition-all duration-300 hover:shadow-xl mb-8"
             >
-                <swiper-slide
-                    :key="i"
-                    v-for="i in 4"
-                    class="relative h-40 border rounded-lg w-36 shrink-0 grow-0 bg-primary mx-auto"
-                >
-                    <img src="" alt="image" class="absolute bg-text inset-0" />
-                    <div
-                        class="p-2 absolute bottom-0 left-0 rounded-lg bg-gray-300 w-full"
-                    >
-                        <img
-                            src="user-male.png"
-                            alt=""
-                            class="w-8 rounded-full bg-slate-100"
-                        />
-                    </div>
-                </swiper-slide>
-            </swiper-container>
-            <p>{{ text }}</p>
-            <div v-if="posts.length > 0" class="mt-6 p-1">
-                <Post v-for="post in posts" :post="post" :key="post.id" />
+                <div class="flex justify-between items-center">
+                    <img
+                        :src="userProfilePicture"
+                        alt="Profile"
+                        class="w-12 h-12 rounded-full bg-gray-300 object-cover"
+                    />
+                    <CreatePopup />
+                </div>
             </div>
-
-            <p
-                v-else
-                class="text-gray-800 dark:text-gray-200 h-full text-2xl font-bold mt-6 rounded-lg py-40 text-center"
+            <!-- Feed Section -->
+            <div
+                class="mx-auto px-4 mt-6 grid grid-cols-1 md:grid-cols-3 gap-6"
             >
-                No Posts Avaliable Right Now
-            </p>
+                <Post
+                    v-for="post in posts"
+                    :post="post"
+                    :key="post.id"
+                    class="mb-6"
+                />
+                <p
+                    v-if="posts.length === 0"
+                    class="text-gray-800 dark:text-gray-200 text-center text-2xl font-bold py-40"
+                >
+                    No Posts Available Right Now
+                </p>
+            </div>
         </div>
     </AppLayout>
 </template>

@@ -34,27 +34,29 @@ const toggleReplies = () => {
 </script>
 
 <template>
-    <div class="flex items-start gap-1 mb-5" id="comment">
+    <div class="flex items-start gap-2 mb-5" id="comment">
         <img
             :src="props.comment.user.profile_photo_url"
             :alt="props.comment.user.username"
             class="w-[3em] aspect-square rounded-full bg-primary"
         />
         <div class="grow">
-            <div class="bg-slate-100 p-2 rounded-lg">
+            <div class="bg-slate-100 p-3 rounded-lg">
                 <div class="flex items-center justify-between">
-                    <p>
+                    <p class="font-bold text-gray-700">
                         {{ props.comment.user.first_name }}
                         {{ props.comment.user.last_name }}
                     </p>
-                    <small>{{
+                    <small class="text-gray-500">{{
                         formatDistance(props.comment.created_at, new Date())
                     }}</small>
                 </div>
-                <small>@{{ props.comment.user.username }}</small>
-                <p class="mt-2">{{ props.comment.content }}</p>
+                <small class="text-gray-500"
+                    >@{{ props.comment.user.username }}</small
+                >
+                <p class="mt-2 text-gray-600">{{ props.comment.content }}</p>
             </div>
-            <div class="flex mt-2 items-center gap-4 text-sm">
+            <div class="flex mt-2 items-center gap-4 text-sm text-gray-600">
                 <div
                     v-if="!props.comment.liked"
                     class="flex items-center gap-2"
@@ -69,6 +71,7 @@ const toggleReplies = () => {
                                 )
                         "
                         preserve-scroll
+                        class="text-primary hover:underline"
                     >
                         Like
                     </button>
@@ -88,11 +91,12 @@ const toggleReplies = () => {
                                     props.comment.id
                                 )
                         "
+                        class="text-primary hover:underline"
                     >
                         Unlike
                     </button>
                     <p class="flex items-center gap-1">
-                        <i class="fa-solid fa-heart"></i>
+                        <i class="fa-solid fa-heart text-primary"></i>
                         {{ props.comment.likes_count }}
                     </p>
                 </div>
@@ -102,7 +106,12 @@ const toggleReplies = () => {
                     "
                     class="flex items-center gap-2"
                 >
-                    <button @click="toggleComment">Reply</button>
+                    <button
+                        @click="toggleComment"
+                        class="text-primary hover:underline"
+                    >
+                        Reply
+                    </button>
                     <p class="flex items-center gap-1">
                         {{ props.comment.comments_count }}
                         {{
@@ -112,20 +121,24 @@ const toggleReplies = () => {
                         }}
                     </p>
                 </div>
-                <button v-if="props.comment.replies" @click="toggleReplies">
+                <button
+                    v-if="props.comment.replies"
+                    @click="toggleReplies"
+                    class="text-primary hover:underline"
+                >
                     {{ showReplies ? "Hide Replies" : "See Replies" }}
                 </button>
             </div>
-            <div v-if="commentField" class="flex p-2 items-cemter gap-1">
+            <div v-if="commentField" class="flex p-2 items-center gap-2">
                 <input
                     v-model="form.content"
                     type="text"
-                    class="p-2 rounded-lg border border-gray-200 outline-0 focus:border-2 focus:border-primary grow"
+                    class="p-2 rounded-lg border border-gray-200 focus:border-primary grow outline-none"
                 />
                 <button
                     @click="submit"
                     preserve-scroll
-                    class="p-2 aspect-square h-full grid place-items-center bg-white text-primary"
+                    class="p-2 aspect-square h-full grid place-items-center bg-primary text-white rounded-lg"
                 >
                     <ion-icon name="send" class="text-xl"></ion-icon>
                 </button>

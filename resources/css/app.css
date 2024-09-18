@@ -11,11 +11,11 @@
 }
 
 .ql-toolbar {
-    @apply bg-white;
+    @apply bg-white dark:bg-gray-900;
 }
 
 .ql-editor {
-    @apply rounded-lg min-h-[20em] bg-white;
+    @apply rounded-lg min-h-[20em] bg-white dark:bg-gray-900;
 }
 
 #comment .ql-toolbar,

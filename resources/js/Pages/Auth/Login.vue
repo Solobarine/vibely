@@ -40,8 +40,8 @@ const submit = () => {
             {{ status }}
         </div>
 
-        <h1 class="text-lg font-bold text-center">Login</h1>
-        <small class="block text-center"
+        <h1 class="text-lg font-bold text-center dark:text-gray-100">Login</h1>
+        <small class="block text-center dark:text-gray-100"
             >Welcome Back, Login to your Account</small
         >
 

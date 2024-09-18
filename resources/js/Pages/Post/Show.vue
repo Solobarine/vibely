@@ -55,123 +55,134 @@ const submit = () => {
             ></i>
         </Menu>
         <div
-            class="rounded text-text mt-4 p-2 grow max-w-[40em] bg-white shadow-md shadow-gray-200 w-full mx-auto"
+            class="rounded-lg text-text mt-4 p-4 max-w-[40em] bg-white shadow-lg shadow-gray-300 w-full mx-auto"
         >
-            <div class="flex items-center justify-between p-1">
-                <div class="flex items-center gap-2 pr-2">
+            <!-- Header with User Info -->
+            <div class="flex items-center justify-between p-2">
+                <div class="flex items-center gap-3">
                     <img
                         :src="user.profile_photo_url"
-                        alt=""
-                        class="w-12 p-1 rounded-full aspect-square bg-primary place-self-start"
+                        alt="Profile"
+                        class="w-12 h-12 p-1 rounded-full bg-primary"
                     />
                     <div>
-                        <p>
+                        <p class="text-lg font-bold">
                             {{ post.user.first_name }} {{ post.user.last_name }}
                         </p>
-                        <small>@{{ post.user.username }}</small>
+                        <small class="text-gray-500"
+                            >@{{ post.user.username }}</small
+                        >
                     </div>
                 </div>
                 <i
-                    class="text-lg fa-solid fa-ellipsis-vertical place-self-center"
+                    class="text-xl fa-solid fa-ellipsis-vertical text-gray-600"
                 ></i>
             </div>
-            <div class="w-full rounded-2xl flex flex-col bg-gray-100">
-                <h1 class="p-3 font-bold">{{ post.title }}</h1>
+
+            <!-- Post Content -->
+            <div class="w-full rounded-2xl bg-gray-100 mt-3">
+                <h1 class="p-4 text-xl font-bold">{{ post.title }}</h1>
                 <swiper-container
                     navigation="true"
                     slidesPerView="1"
                     speed="600"
                     spaceBetween="10"
                     loop="true"
-                    css-mode="true"
-                    class="w-full grow items-center"
+                    class="w-full rounded-lg overflow-hidden"
                 >
                     <swiper-slide
                         v-for="image in postImages"
-                        class="border rounded-lg w-full w-auto shrink-0 grow"
+                        class="w-full h-auto"
                     >
                         <img
                             :src="`${image}`"
-                            alt=""
-                            class="rounded-lg w-full bg-primary"
+                            alt="Post Image"
+                            class="rounded-lg w-full object-cover"
                         />
                     </swiper-slide>
                 </swiper-container>
-                <div v-html="post.content" class="p-3"></div>
+                <div v-html="post.content" class="p-4 text-base"></div>
             </div>
-            <div class="flex items-center gap-1 justify-between p-2">
-                <div class="flex items-center gap-1 justify-between">
-                    <i class="fa-solid fa-face-smile"></i>
-                    <i class="fa-solid fa-heart"></i>
-                    <i class="fa-solid fa-thumbs-up"></i>
-                    <small class="ml-2">{{ props.likes_count }}</small>
+
+            <!-- Post Actions -->
+            <div class="flex items-center justify-between p-3">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-face-smile text-xl text-gray-600"></i>
+                    <i class="fa-solid fa-heart text-xl text-gray-600"></i>
+                    <i class="fa-solid fa-thumbs-up text-xl text-gray-600"></i>
+                    <small class="ml-2 text-gray-500">{{
+                        props.likes_count
+                    }}</small>
                 </div>
-                <small
-                    >{{ props.comment_count }}
-                    {{
-                        props.comment_count === 1 ? "comment" : "comments"
-                    }}</small
-                >
+                <small class="text-gray-500">
+                    {{ props.comment_count }}
+                    {{ props.comment_count === 1 ? "comment" : "comments" }}
+                </small>
             </div>
-            <div class="grid grid-cols-3 items-center py-2 text-text gap-2">
+
+            <!-- Like, Comment, Share Buttons -->
+            <div
+                class="grid grid-cols-3 items-center py-2 gap-4 text-gray-600 border-t border-gray-200"
+            >
                 <button
                     v-if="props.liked"
                     @click="() => handleLike('posts.likes', 'post', post.id)"
-                    preserve-scroll
-                    class="flex flex-wrap items-center justify-center gap-2 p-2"
+                    class="flex items-center justify-center gap-2 p-2 hover:bg-gray-50 rounded-md transition"
                 >
-                    <i class="fa-solid fa-heart"></i>
+                    <i class="fa-solid fa-heart text-primary"></i>
                     <p>Unlike</p>
                 </button>
                 <button
                     v-else
-                    preserve-scroll
                     @click="() => handleLike('posts.likes', 'post', post.id)"
-                    class="flex flex-wrap items-center justify-center gap-2 p-2"
+                    class="flex items-center justify-center gap-2 p-2 hover:bg-gray-50 rounded-md transition"
                 >
                     <i class="fa-regular fa-heart"></i>
                     <p>Like</p>
                 </button>
                 <div
-                    class="flex flex-wrap items-center justify-center gap-2 p-2"
+                    class="flex items-center justify-center gap-2 p-2 hover:bg-gray-50 rounded-md transition"
                 >
                     <i class="fa-regular fa-message"></i>
                     <p>Comment</p>
                 </div>
                 <div
-                    class="flex flex-wrap items-center justify-center gap-2 p-2"
+                    class="flex items-center justify-center gap-2 p-2 hover:bg-gray-50 rounded-md transition"
                 >
                     <i class="fa-solid fa-share-from-square"></i>
                     <p>Share</p>
                 </div>
             </div>
-            <div class="flex items-center gap-2">
+
+            <!-- Comment Input -->
+            <div class="flex items-center gap-3 mt-4">
                 <img
                     :src="user.profile_photo_url"
                     :alt="user.username"
-                    class="w-12 aspect-square place-self-start rounded-full bg-primary"
+                    class="w-10 h-10 rounded-full bg-primary"
                 />
                 <div class="grow">
-                    <div class="relative grid grow">
+                    <div class="relative flex">
                         <i
-                            class="fa-solid fa-comment absolute bg-primary text-white p-2 border-2 border-text border-r-0 text-lg rounded-s-full h-full grid place-items-center aspect-square"
+                            class="fa-solid fa-comment absolute bg-primary text-white p-2 border-2 border-text rounded-l-full h-full grid place-items-center"
                         ></i>
                         <input
                             v-model="form.content"
                             type="text"
-                            class="p-3 pl-14 rounded-full border-2 border-text"
+                            class="p-3 pl-12 w-full rounded-full border-2 border-gray-300 focus:border-primary transition"
                             placeholder="Add a comment"
                         />
                     </div>
                     <button
                         @click="submit"
-                        preserve-scroll
-                        class="mt-3 p-2 px-5 text-white bg-primary rounded-lg"
+                        class="mt-3 p-2 px-6 bg-primary text-white rounded-lg hover:bg-primary-dark transition"
                     >
                         Post
                     </button>
                 </div>
             </div>
+
+            <!-- Comments Section -->
             <div v-if="post.comments" class="mt-6">
                 <Comment
                     v-for="comment in post.comments"

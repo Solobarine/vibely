@@ -23,8 +23,8 @@ defineProps({
             class="min-h-screen bg-gray-100 dark:bg-gray-600 text-gray-800 dark:text-white"
         >
             <!-- Page Content -->
-            <main class="flex items-start shrink-0 gap-4">
-                <Menu class="text-text lg:sticky lg:top-[4em]">
+            <main class="flex items-start shrink-0">
+                <Menu class="text-text md:sticky lg:top-[4em]">
                     <i
                         @click="toggle"
                         class="fa-solid cursor-pointer text-right bg-white p-1 rounded-md transition-all duration-700 ease-in ml-auto w-fit text-2xl absolute sm:hidden"
@@ -35,7 +35,6 @@ defineProps({
                     ></i>
                 </Menu>
                 <slot />
-                <Friends class="lg:sticky lg:top-0" />
             </main>
             <Footer />
         </div>

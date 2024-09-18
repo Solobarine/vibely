@@ -20,7 +20,7 @@ const submit = () => {
 
 <template>
     <div
-        class="w-full bg-gray-100 shadow-md shadow-stone-200 max-w-[25em] mx-auto rounded text-text mt-4 p-2"
+        class="w-full bg-white dark:bg-gray-800 shadow-md max-w-[25em] mx-auto rounded text-text dark:text-white mt-4 p-2"
     >
         <div class="flex items-center justify-between p-1">
             <div class="flex items-center gap-2 pr-2">
@@ -83,7 +83,7 @@ const submit = () => {
                 {{ post.comments_count === 1 ? "comment" : "comments" }}</small
             >
         </div>
-        <div class="grid grid-cols-3 py-2 text-text gap-4">
+        <div class="grid grid-cols-3 py-2 text-text dark:text-white gap-4">
             <button
                 @click="submit"
                 preserve-scroll

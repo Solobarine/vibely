@@ -77,7 +77,7 @@ defineProps({
             <img
                 src="emoji_bg.png"
                 alt="A Rainbow of emojis"
-                className="grow max-h-screen object-contain"
+                className="absolute right-4 grow h-full max-w-[90vh] object-contain"
             />
         </div>
     </div>

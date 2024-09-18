@@ -22,50 +22,59 @@ console.log(notification);
 
 <template>
     <div
-        class="p-2 pb-1 rounded-md bg-white dark:bg-gray-500"
-        :class="{ 'border border-primary': !notification.read_at }"
+        class="p-4 pb-3 rounded-md bg-white dark:bg-gray-700 shadow-sm transition-all duration-200"
+        :class="{ 'border border-orange-500': !notification.read_at }"
     >
-        <div class="flex flex-wrap items-center justify-between gap-2">
-            <div class="flex items-center gap-2 mb-2">
+        <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-3">
                 <img
                     src="user-female.png"
-                    alt=""
-                    class="w-10 aspect-square rounded-full bg-primary slot"
+                    alt="User Avatar"
+                    class="w-12 h-12 rounded-full object-cover bg-orange-100"
                 />
-                <p>{{ notification.data.content }}</p>
+                <p class="text-gray-800 dark:text-gray-200 font-medium">
+                    {{ notification.data.content }}
+                </p>
             </div>
-            <div>
+            <div class="flex gap-2">
                 <Link
-                    :key="link.id"
                     v-for="link in notification.data.links"
+                    :key="link.id"
                     :href="link.link"
-                    class="text-white bg-primary rounded-lg p-2"
-                    >{{ link.name }}</Link
+                    class="text-white bg-orange-500 hover:bg-orange-600 rounded-lg px-3 py-1 text-sm transition-colors duration-300"
                 >
+                    {{ link.name }}
+                </Link>
             </div>
         </div>
-        <div class="flex items-center justify-between">
+        <div class="flex items-center justify-between mt-3">
             <button
+                v-if="!notification.read_at"
                 @click.prevent="submit"
-                class="mark_read grid gap-1 place-items-center p-2 rounded-md relative"
+                class="mark_read flex items-center gap-2 px-3 py-2 rounded-md bg-gray-100 hover:bg-gray-200 dark:bg-gray-600 dark:hover:bg-gray-500 transition-colors duration-200"
             >
-                <ion-icon name="mail-open-outline" class="text-xl"></ion-icon>
-                <span class="is_read_text">Mark as read</span>
+                <ion-icon
+                    name="mail-open-outline"
+                    class="text-lg text-gray-500"
+                ></ion-icon>
+                <span
+                    class="text-sm font-medium text-gray-600 dark:text-gray-300"
+                    >Mark as read</span
+                >
             </button>
             <ion-icon
                 v-if="notification.read_at"
                 name="checkmark-done-outline"
-                class="text-primary"
+                class="text-xl text-orange-500"
             ></ion-icon>
             <ion-icon
                 v-else
                 name="alert-circle-outline"
-                class="text-primary"
+                class="text-xl text-yellow-500"
             ></ion-icon>
         </div>
     </div>
 </template>
-
 <style scoped>
 /* code... */
 </style>

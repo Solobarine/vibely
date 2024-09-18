@@ -18,7 +18,7 @@ const { href } = window.location;
 
 <template>
     <div
-        class="xxs:fixed z-20 bg-white relative p-4 w-full dark:text-white dark:bg-gray-700 transition-all duration-500 ease-in shrink-0 min-w-[10em] max-w-[15em] shadow-text lg:static flex flex-col gap-3 self-stretch"
+        class="xxs:fixed z-20 bg-white relative p-4 w-full dark:text-white dark:bg-gray-800 transition-all duration-500 ease-in shrink-0 min-w-[10em] max-w-[15em] shadow-text sm:static flex flex-col gap-3 self-stretch"
         :class="{ 'left-0': isOpen, 'left-[-15em]': !isOpen }"
     >
         <slot :toggle="toggle" :isOpen="isOpen" />
@@ -29,14 +29,6 @@ const { href } = window.location;
         >
             <i class="fa-solid fa-pen"></i>
             Posts
-        </Link>
-        <Link
-            :href="route('messenger')"
-            class="hover:text-primary transition duration-200 flex items-center py-2 gap-2"
-            :class="route('messenger') === href ? 'text-primary' : ''"
-        >
-            <i class="fa-solid fa-message"></i>
-            Messenger
         </Link>
         <Link
             :href="route('friends')"

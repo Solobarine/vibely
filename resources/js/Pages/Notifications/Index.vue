@@ -27,7 +27,7 @@ const notifications = props.notifications;
             ></i>
         </Menu>
         <div class="grow flex flex-col">
-            <div class="bg-primary py-24">
+            <div class="bg-primary py-16">
                 <div
                     class="px-4 py-2 flex items-center justify-between text-white"
                 >
@@ -50,6 +50,12 @@ const notifications = props.notifications;
                     :notification="notification"
                     :key="notification"
                 />
+            </div>
+            <div
+                v-if="notifications.length === 0"
+                class="p-4 text-center text-red-500"
+            >
+                No new notifications
             </div>
         </div>
     </section>
